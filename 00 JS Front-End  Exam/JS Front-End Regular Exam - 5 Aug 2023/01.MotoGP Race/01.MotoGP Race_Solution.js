@@ -11,23 +11,25 @@ function solve(input) {
 
   // Process rider details
   for (let i = 1; i <= n; i++) {
-    let [rider, fuelCapacity, position] = input[i].split('|');
+    let [rider, fuelCapacity, position] = input[i].split("|");
     riders[rider] = {
       fuelCapacity: parseFloat(fuelCapacity),
-      position: parseInt(position)
+      position: parseInt(position),
     };
   }
 
   // Process commands
   let index = n + 1;
   while (index < input.length && input[index] !== "Finish") {
-    let [action, rider, arg1, arg2] = input[index].split(' - ');
+    let [action, rider, arg1, arg2] = input[index].split(" - ");
 
     if (action === "StopForFuel") {
       let minFuel = parseFloat(arg1);
       let newPos = parseInt(arg2);
       if (riders[rider].fuelCapacity < minFuel) {
-        console.log(`${rider} stopped to refuel but lost his position, now he is ${newPos}.`);
+        console.log(
+          `${rider} stopped to refuel but lost his position, now he is ${newPos}.`
+        );
         riders[rider].position = newPos;
       } else {
         console.log(`${rider} does not need to stop for fuel!`);
@@ -36,12 +38,16 @@ function solve(input) {
       let rider1 = rider;
       let rider2 = arg1;
       if (riders[rider1].position < riders[rider2].position) {
-        [riders[rider1].position, riders[rider2].position] = [riders[rider2].position, riders[rider1].position];
+        [riders[rider1].position, riders[rider2].position] = [
+          riders[rider2].position,
+          riders[rider1].position,
+        ];
         console.log(`${rider1} overtook ${rider2}!`);
       }
     } else if (action === "EngineFail") {
       let lapsLeft = parseInt(arg1);
-      console.log(`${rider} is out of the race because of a technical issue, ${lapsLeft} laps before the finish.`);
+      console.log(`${rider} is out of the race because of a technical issue, ${lapsLeft} laps before the finish.`
+      );
       delete riders[rider];
     }
 
@@ -54,16 +60,15 @@ function solve(input) {
   }
 }
 
-
-const input = (["3",
-"Valentino Rossi|100|1",
-"Marc Marquez|90|2",
-"Jorge Lorenzo|80|3",
-"StopForFuel - Valentino Rossi -50 - 1",
-"Overtaking - Marc Marquez - Jorge Lorenzo",
-"EngineFail - Marc Marquez - 10",
-"Finish"])
-
-
+const input = [
+  "3",
+  "Valentino Rossi|100|1",
+  "Marc Marquez|90|2",
+  "Jorge Lorenzo|80|3",
+  "StopForFuel - Valentino Rossi - 50 - 1",
+  "Overtaking - Marc Marquez - Jorge Lorenzo",
+  "EngineFail - Marc Marquez - 10",
+  "Finish",
+];
 
 solve(input);
