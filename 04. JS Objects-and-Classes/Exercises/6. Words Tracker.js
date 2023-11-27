@@ -1,22 +1,26 @@
 function solve(input) {
     const [searchWords, ...words] = input;
     
-    const wordOccurances = searchWords.split(" ").reduce((acc, curr) => {
+    const wordOccurrences = searchWords.split(" ").reduce((acc, curr) => {
         acc[curr] = 0;        
         return acc;
     }, {});
 
     words.forEach(word => {
-        if(wordOccurances.hasOwnProperty(word)) {
-            wordOccurances[word] += 1;
+        if (wordOccurrences.hasOwnProperty(word)) {
+            wordOccurrences[word] += 1;
         }
     });
 
-    console.log(wordOccurances);
+    Object.entries(wordOccurrences)
+        .sort(([, countA], [, countB]) => countB - countA)
+        .forEach(([word, occurrences]) => {
+            console.log(`${word} - ${occurrences}`);
+        });
 }
 
 solve([
     'this sentence', 
     'In', 'this', 'sentence', 'you', 'have', 'to', 'count', 'the', 'occurrences', 'of', 'the', 'words', 'this', 'and', 'sentence', 'because', 'this', 'is', 'your', 'task'
-    ]
-    );
+]);
+
