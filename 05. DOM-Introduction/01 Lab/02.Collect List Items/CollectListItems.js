@@ -3,5 +3,5 @@ function extractText() {
 
   const text = listItems.map((item) => item.textContent).join("\n");
 
-  document.querySelector("textarea").value = text;
+  document.querySelector("#result").value = text;
 }

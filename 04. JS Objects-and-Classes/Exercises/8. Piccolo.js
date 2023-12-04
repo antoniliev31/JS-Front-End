@@ -4,7 +4,7 @@ function solve(input) {
   input.forEach((entry) => {
     const [command, number] = entry.split(", ");
 
-    if (command === "IN") {
+    if (command === "IN" && !parking.includes(number)) {
       parking.push(number);
     } else if (command === "OUT") {
       parking = parking.filter(carNumber => carNumber !== number);
@@ -23,6 +23,8 @@ function solve(input) {
 
 solve(['IN, CA2844AA',
 'IN, CA1234TA',
+'IN, CA1111TA',
+'IN, CA1111TA',
 'OUT, CA2844AA',
 'IN, CA9999TT',
 'IN, CA2866HI',
