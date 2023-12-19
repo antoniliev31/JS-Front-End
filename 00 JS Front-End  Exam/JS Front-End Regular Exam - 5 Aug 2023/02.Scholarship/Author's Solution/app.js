@@ -10,13 +10,10 @@ function solve() {
     publishBtn.addEventListener("click", publish);
   
     function publish() {
-      if (
-        taskTitleInput.value == "" ||
-        taskCategoryInput.value == "" ||
-        taskContentInput.value == ""
-      ) {
+      if ( taskTitleInput.value == "" || taskCategoryInput.value == "" || taskContentInput.value == "") {
         return;
       }
+      
       let reviewList = document.getElementById("preview-list");
       let publishedList = document.getElementById("candidates-list");
   

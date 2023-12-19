@@ -1,19 +1,11 @@
 function addItem() {
-    const value = document.querySelector("#newItemText").value;
+  const inputElement = document.querySelector("#newItemText");
 
-    const item = document.createElement("li");
+  const newListItem = document.createElement("li");
+  newListItem.textContent = inputElement.value;
 
-    item.textContent = value;
+  const ulList = document.querySelector('#items');
+  ulList.appendChild(newListItem);
 
-    const deleteButton = document.createElement("a");
-    deleteButton.href = '#';
-    deleteButton.textContent = '[Delete]';
-    deleteButton.addEventListener('click', (e) => {
-        e.target.parentElement.remove();
-    });
-
-    item.appendChild(deleteButton);
-
-    document.querySelector("ul").appendChild(item);
-
+  inputElement.value = '';
 }
